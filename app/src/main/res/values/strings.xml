@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">sonnewspaper</string>
+    <string name="title_home">Hơme</string>
+    <string name="title_nofication">Notification</string>
+    <string name="title_mess">Message</string>
+    <string name="title_profile">Profile</string>
+</resources>

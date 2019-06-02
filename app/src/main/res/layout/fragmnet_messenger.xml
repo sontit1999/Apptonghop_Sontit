@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="#4CAF50"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:layout_marginTop="25dp"
+        android:textSize="15dp"
+        android:id="@+id/edittextusername"
+        android:hint="User name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_marginTop="15dp"
+        android:textSize="15dp"
+        android:id="@+id/edittextcontent"
+        android:hint="Content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/buttonsend"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:text="SEND"
+        android:textSize="20sp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+    <ListView
+        android:id="@+id/listviewchat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</LinearLayout>
