@@ -14,7 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 
-
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
@@ -24,46 +23,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         anhxa();
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        loadFragment(new Home_fragment());
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment ;
+                switch (menuItem.getItemId())
+                {
+                    case R.id.navigation_home:
+                        fragment = new Home_fragment();
+                        loadFragment(fragment);
+                        break;
+
+                    case R.id.navigation_messenger:
+                        fragment = new Messenger_fragment();
+                        loadFragment(fragment);
+                        break;
+                    case R.id.navigation_notification:
+                        fragment = new Notification_fragment();
+                        loadFragment(fragment);
+                        break;
+                    case R.id.navigation_profile:
+                        fragment = new Profile_fragment();
+                        loadFragment(fragment);
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    fragment = new Home_fragment();
-                    loadfragment(fragment);
-                    return true;
-                case R.id.navigation_notification:
-                    fragment = new Notification_fragment();
-                    loadfragment(fragment);
-                    return true;
-                case R.id.navigation_messenger:
-                    fragment = new Messenger_fragment();
-                    loadfragment(fragment);
-                    return true;
-                case R.id.navigation_profile:
-                    fragment = new Profile_fragment();
-                    loadfragment(fragment);
-                    return true;
-            }
-            return true;
-        }
-    };
     private void anhxa() {
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomnavigation);
         frameLayout = (FrameLayout) findViewById(R.id.framecontainer);
 
     }
-    private void loadfragment(Fragment fragment)
-    {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.framecontainer,fragment);
-        fragmentTransaction.commit();
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.framecontainer, fragment);
+        transaction.commit();
     }
-
 }

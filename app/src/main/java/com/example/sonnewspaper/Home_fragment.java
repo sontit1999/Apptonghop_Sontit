@@ -1,9 +1,11 @@
 package com.example.sonnewspaper;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,8 +29,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Home_fragment extends Fragment {
+    int a = 5;
+    SwipeRefreshLayout srl;
     RecyclerView recyclerView;
     NewpostAdapter adapter;
     ArrayList<NewPost> arrayList;
@@ -42,23 +47,17 @@ public class Home_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // ánh xạ
         View view = inflater.inflate(R.layout.fragment_home,container,false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        anhxa(view);
+        setuprecyclerview();
         mess();
-        arrayList = new ArrayList<>();
-
-        adapter = new NewpostAdapter(getActivity(),arrayList);
-
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-
+        sukienswipe();
         return view;
     }
+    // lấy data
     private void mess()
     {
-        String url =  "https://baomoi.com/";
+         String url =  "https://baomoi.com/";
+
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -73,7 +72,11 @@ public class Home_fragment extends Fragment {
                     String tittle = i.select(".story__heading a").text();
                     String timeago = i.select(".story__meta .time").attr("datetime");
                     String linkpost = "https://baomoi.com" + i.select(".story__heading a").attr("href");
-                    arrayList.add(new NewPost(linkthumbail,tittle,"20 minute ago",linkpost));
+                    if(!(linkthumbail.length() == 0 || tittle.length() == 0 || timeago.length() == 0 || linkpost.length() ==0))
+                    {
+                        arrayList.add(new NewPost(linkthumbail,tittle,timeago,linkpost));
+                    }
+
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -87,4 +90,38 @@ public class Home_fragment extends Fragment {
         );
         requestQueue.add(stringRequest);
     }
+    // bắt sự kiện swipe
+    private  void sukienswipe()
+    {
+        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mess();
+                Toast.makeText(getActivity(), "Đã refresh", Toast.LENGTH_SHORT).show();
+                srl.setRefreshing(false);
+            }
+        });
+    }
+    // ánh xạ
+    private void anhxa(View view)
+    {
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        srl = (SwipeRefreshLayout) view.findViewById(R.id.swiperefreshlayout);
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        srl.setColorSchemeColors(color);
+        arrayList = new ArrayList<>();
+    }
+    // set up recyclerview
+    private void setuprecyclerview()
+    {
+        adapter = new NewpostAdapter(getActivity(),arrayList);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+    }
+
+
 }

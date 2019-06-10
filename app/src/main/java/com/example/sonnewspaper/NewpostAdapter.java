@@ -33,12 +33,10 @@ public class NewpostAdapter extends RecyclerView.Adapter<NewpostAdapter.Viewhold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholder viewholder, int i) {
+    public void onBindViewHolder(@NonNull Viewholder viewholder, final int i) {
         final int chiso = i;
-        if(!(arrayList.get(i).image.isEmpty()))
-        {
             viewholder.txttitle.setText(arrayList.get(i).getTittle());
-            viewholder.txttime.setText(arrayList.get(i).getTime());
+            viewholder.txttime.setText(arrayList.get(i).getTime().substring(11,19));
             Picasso.get().load(arrayList.get(i).getImage()).into(viewholder.img);
 
             viewholder.ll.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +47,12 @@ public class NewpostAdapter extends RecyclerView.Adapter<NewpostAdapter.Viewhold
                     context.startActivity(intent);
                 }
             });
-        }
-
+            viewholder.txttime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, arrayList.get(i).getTime(), Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
     @Override

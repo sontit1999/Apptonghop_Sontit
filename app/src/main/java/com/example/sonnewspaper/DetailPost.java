@@ -9,6 +9,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 public class DetailPost extends AppCompatActivity {
     WebView webView;
     String link;
@@ -20,8 +29,6 @@ public class DetailPost extends AppCompatActivity {
         anhxa();
         Intent intent = getIntent();
         link = intent.getStringExtra("link");
-        Toast.makeText(this, link, Toast.LENGTH_SHORT).show();
-
         setupwwebview();
     }
     private void anhxa()
@@ -43,4 +50,6 @@ public class DetailPost extends AppCompatActivity {
         {
 
         }
+        // get doccument
+
 }
