@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "518132611992",
+    "firebase_url": "https://sonnewspaper-ed674.firebaseio.com",
+    "project_id": "sonnewspaper-ed674",
+    "storage_bucket": "sonnewspaper-ed674.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518132611992:android:b6991409c68dd6c0",
+        "android_client_info": {
+          "package_name": "com.example.sonnewspaper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518132611992-446v05ubqkpganush38u5hbv5ge0f8uq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sonnewspaper",
+            "certificate_hash": "f4f34d27e65e30ce21c498bd6c8496c108d99496"
+          }
+        },
+        {
+          "client_id": "518132611992-kjgh0bo9bu5i5qplpk6n0p5nv4sflr6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_UhI8yv9ZqxUmtLaWTZCYX0Xt0Ue9dCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518132611992-kjgh0bo9bu5i5qplpk6n0p5nv4sflr6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
