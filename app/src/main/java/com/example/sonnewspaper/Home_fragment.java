@@ -1,5 +1,6 @@
 package com.example.sonnewspaper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -55,7 +56,25 @@ public class Home_fragment extends Fragment {
         setuprecyclerview();
         mess();
         sukienswipe();
-        recyclerView.scrollToPosition(5);
+        final Activity activity = getActivity();
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 && activity.findViewById(R.id.bottomnavigation).isShown()) {
+                    activity.findViewById(R.id.bottomnavigation).setVisibility(View.GONE);
+                } else if (dy < 0 ) {
+                    activity.findViewById(R.id.bottomnavigation).setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
         return view;
     }
     // lấy data
