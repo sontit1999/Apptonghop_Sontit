@@ -1,7 +1,9 @@
 package com.example.sonnewspaper;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,7 +34,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Home_fragment extends Fragment {
-    int a = 5;
+    private static final String KEY_LAYOUT = "sontit";
+    private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
     SwipeRefreshLayout srl;
     RecyclerView recyclerView;
     NewpostAdapter adapter;
@@ -45,12 +48,14 @@ public class Home_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("vongdoi","oncreatViewHOme");
         // ánh xạ
         View view = inflater.inflate(R.layout.fragment_home,container,false);
         anhxa(view);
         setuprecyclerview();
         mess();
         sukienswipe();
+        recyclerView.scrollToPosition(5);
         return view;
     }
     // lấy data
@@ -122,6 +127,65 @@ public class Home_fragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
+    // vòng đời
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("vongdoi","oncreatHOme");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("vongdoi","onStartHOme");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("vongdoi","onresumeHOme");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("vongdoi","oncreatPauseHOme");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("vongdoi","onstopHOme");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("vongdoi","ondestroyViewHOme");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("vongdoi","ondestroyHOme");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("vongdoi","ondetachHOme");
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d("vongdoi","onAtacKHOme");
+    }
 }

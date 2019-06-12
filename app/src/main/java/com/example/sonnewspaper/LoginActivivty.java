@@ -41,6 +41,7 @@ public class LoginActivivty extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("vongdoi","oncreatLogin");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_activivty);
         anhxa();
@@ -108,4 +109,42 @@ public class LoginActivivty extends AppCompatActivity {
         btnlogin = (Button) findViewById(R.id.butttonlogin);
         txtregister = (TextView) findViewById(R.id.textviewnotaccount);
     }
+    // vòng đời
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("vongdoi","OnStartLogin");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("vongdoi","OnresumeLogin");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("vongdoi","OnPauseLogin");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("vongdoi","OnStopLogin");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("vongdoi","OnrestartLogin");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("vongdoi","OnDestroyLogin");
+    }
+
+
 }
