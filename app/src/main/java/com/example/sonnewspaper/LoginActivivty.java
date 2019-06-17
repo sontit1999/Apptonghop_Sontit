@@ -31,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+// sontit
 public class LoginActivivty extends AppCompatActivity {
     ProgressBar progressBar;
     EditText edtusername,edtpassword;
