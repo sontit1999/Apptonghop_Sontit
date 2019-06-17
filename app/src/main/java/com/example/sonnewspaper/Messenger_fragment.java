@@ -108,7 +108,7 @@ public class Messenger_fragment extends Fragment {
                     // arrayList.add(ds.child("usersend").getValue().toString() + "(" + ds.child("time").getValue().toString() + ")" + " :  " +ds.child("content").getValue().toString());
                 }
                 adaper.notifyDataSetChanged();
-
+                recyclerView.scrollToPosition(arrayList.size()-1);
             }
 
             @Override
