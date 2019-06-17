@@ -3,6 +3,7 @@ package com.example.sonnewspaper;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -75,6 +76,17 @@ public class Home_fragment extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(!recyclerView.canScrollVertically(1))
+                {
+                    Toast.makeText(getActivity(), "Hết rồi còn đâu mà vuốt cái gì haha", Toast.LENGTH_SHORT).show();
+                    recyclerView.scrollToPosition(0);
+                }
+            }
+        });
         return view;
     }
     // lấy data
@@ -120,6 +132,8 @@ public class Home_fragment extends Fragment {
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(),R.raw.cuoi);
+                mediaPlayer.start();
                 mess();
                 Toast.makeText(getActivity(), "Đã refresh", Toast.LENGTH_SHORT).show();
                 srl.setRefreshing(false);
